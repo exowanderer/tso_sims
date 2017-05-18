@@ -1,0 +1,10 @@
+*.fits
+.ipynb_checkpoints/*
+direct_real_comparisons/
+grism_simulation.ipynb
+pynrc_frame_times.ipynb
+sim_img_info/*
+cv3_compare/
+sim_img/ev_local*
+sim_img/ev_sorted*
+sim_img/examples_for_presentation/
