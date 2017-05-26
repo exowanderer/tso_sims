@@ -9,7 +9,7 @@ class combInts():
     def __init__(self,fileString,outImg='comb_img.fits'):
         self.outImg = outImg
         self.fileString = fileString
-        self.fileList = glob.glob(fileString)
+        self.fileList = np.sort(glob.glob(fileString))
         if len(self.fileList) >= 1:
             self.firstFile = self.fileList[0]
         else:
