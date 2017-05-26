@@ -1,4 +1,5 @@
 *.fits
+*.pyc
 .ipynb_checkpoints/*
 direct_real_comparisons/
 grism_simulation.ipynb
@@ -8,3 +9,5 @@ cv3_compare/
 sim_img/ev_local*
 sim_img/ev_sorted*
 sim_img/examples_for_presentation/
+sim_img/NRCB1_2017-05-17T21h55m08_000.eps
+sim_img/NRCB1_2017-05-17T21h55m08_001.eps
