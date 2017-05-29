@@ -23,6 +23,7 @@ class combInts():
         self.subsizeX = self.firstHeader['SUBSIZE1']
         self.subsizeY = self.firstHeader['SUBSIZE2']
         self.firstSciHeader = HDUList['SCI'].header
+        
         #self.nx = self.
         HDUList.close()
         
@@ -42,16 +43,27 @@ class combInts():
         """ Combines the files """
         self.checkDetector()
         allCube = np.zeros((self.nints,self.ngroups,self.subsizeY,self.subsizeX),dtype='uint16')
+        allZero = np.zeros((self.nints,self.subsizeY,self.subsizeX),dtype='uint16')
+        
         for intInd, oneFile in enumerate(self.fileList):
             HDUList = fits.open(oneFile)
             allCube[intInd,:,:,:] = HDUList['SCI'].data
+            allZero[intInd,:,:] = HDUList['ZEROFRAME'].data
             HDUList.close()
         
         primHDU = fits.PrimaryHDU(header=self.firstHeader)
         primHDU.name = 'PRIMARY'
         
         cubeHDU = fits.ImageHDU(data=allCube,header=self.firstSciHeader)
-        HDUList = fits.HDUList([primHDU,cubeHDU])
+        
+        zeroHDU = fits.ImageHDU(data=allZero)
+        zeroHDU.header.comments['NAXIS1'] = 'length of first data axis (#columns)'
+        zeroHDU.header.comments['NAXIS2'] = 'length of second data axis (#rows)'
+        if zeroHDU.header['NAXIS'] > 2:
+            zeroHDU.header.comments['NAXIS2'] = 'length of second data axis (#integrations)'
+        zeroHDU.name = 'ZEROFRAME'
+        
+        HDUList = fits.HDUList([primHDU,cubeHDU,zeroHDU])
         HDUList.writeto(self.outImg,overwrite=True)
         
 def test():
