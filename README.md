@@ -1,6 +1,6 @@
-# Simple Scripts for Simulating pyNRC
+# Simple Scripts for Simulating Time Series with pyNRC
 
-These require a branch of pyNRC
+These require a specific branch of pyNRC
 
 https://github.com/eas342/pynrc/tree/dmsData
 
