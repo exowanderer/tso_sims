@@ -85,4 +85,8 @@ def comb_all():
         savePath = 'sim_img/'+oneDir+'_comb/'+oneSch+'.fits'
         c = combInts(searchPath,savePath)
         c.comb()
+
+if __name__ == '__main__':
+    """ Run comb_all by default """
+    comb_all()
     
