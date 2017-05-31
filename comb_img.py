@@ -13,6 +13,7 @@ class combInts():
         if len(self.fileList) >= 1:
             self.firstFile = self.fileList[0]
             self.fileFound = True
+            print("Combining "+self.fileString)
         else:
             print("No files found for "+self.fileString)
             self.fileFound = False
