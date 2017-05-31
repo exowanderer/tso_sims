@@ -12,9 +12,11 @@ class combInts():
         self.fileList = np.sort(glob.glob(fileString))
         if len(self.fileList) >= 1:
             self.firstFile = self.fileList[0]
+            self.fileFound = True
         else:
             print("No files found for "+self.fileString)
-            pdb.set_trace()
+            self.fileFound = False
+            return
         
         HDUList = fits.open(self.firstFile)
         self.firstHeader = HDUList['PRIMARY'].header
@@ -84,7 +86,8 @@ def comb_all():
         searchPath = 'sim_img/'+oneDir+'/'+oneSch+'*.fits'
         savePath = 'sim_img/'+oneDir+'_comb/'+oneSch+'.fits'
         c = combInts(searchPath,savePath)
-        c.comb()
+        if c.fileFound == True:
+            c.comb()
 
 if __name__ == '__main__':
     """ Run comb_all by default """
