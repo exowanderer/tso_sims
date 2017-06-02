@@ -4,7 +4,7 @@ from pynrc.nrc_utils import S
 
 oneFilt = 'F444W'
 nGROUP = 12
-nINT = 30
+nINT = 666
 # Initialize a NIRCam Grism observation in Stripe mode 
 nrc = pynrc.NIRCam(oneFilt, pupil='GRISM0', module='A', nint=nINT,ngroup=nGROUP,
                    wind_mode='STRIPE', xpix=2048, ypix=256,read_mode='BRIGHT1')
